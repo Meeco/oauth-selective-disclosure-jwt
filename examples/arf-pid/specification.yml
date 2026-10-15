@@ -1,25 +1,54 @@
 user_claims:
-  iss: https://pid-provider.memberstate.example.eu
-  iat: 1541493724
-  type: PersonIdentificationData
-  !sd first_name: Erika
+  vct: urn:eudi:pid:de:1
+  iss: https://pid-issuer.bund.de.example
+#  vct#integrity: sha256-jo8433ot48utul8ura33
+  !sd given_name: Erika
   !sd family_name: Mustermann
-  !sd nationalities: [!sd "DE"]
-  !sd birth_family_name: Schmidt
-  !sd birthdate: '1973-01-01'
+  !sd birthdate: '1963-08-12'
   !sd address:
-    postal_code: '12345'
-    locality: Irgendwo
-    street_address: Sonnenstrasse 23
-    country_code: DE
-  !sd is_over_18: true
-  !sd is_over_21: true
-  !sd is_over_65: false
+    !sd street_address: Heidestraße 17
+    !sd locality: Köln
+    !sd postal_code: '51147'
+    !sd country: DE
+  !sd nationalities:
+  - DE
+  !sd sex: 2
+  !sd birth_family_name: Gabler
+  !sd place_of_birth:
+    !sd locality: Berlin
+    !sd country: DE
+  !sd age_equal_or_over:
+    !sd "12": true
+    !sd "14": true
+    !sd "16": true
+    !sd "18": true
+    !sd "21": true
+    !sd "65": false
+  !sd age_in_years: 62
+  !sd age_birth_year: 1963
+
+  !sd issuance_date: "2020-03-11"
+  !sd expiry_date: "2030-03-12"
+
+  !sd issuing_authority: DE
+  !sd issuing_country: DE
+
+  #cnf:
+  #  jwk:
+  #    kty: EC
+  #    crv: P-256
+  #    x: 52aDI_ur05n1f_p3jiYGUU82oKZr3m4LsAErM536crQ
+  #    "y": ckhZ-KQ5aXNL91R8Eufg1aOf8Z5pZJnIvuCzNGfdnzo
+
 
 holder_disclosed_claims:
   nationalities:
     - true
-  is_over_18: true
+  age_equal_or_over:
+    "18": true
 
-add_decoy_claims: true
+add_decoy_claims: false
 key_binding: true
+
+extra_header_parameters:
+  typ: "dc+sd-jwt"
